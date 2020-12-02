@@ -45,6 +45,7 @@ $(foreach ARCH,$(ARCHS),$(eval $(call libwg-go-a,$(ARCH))))
 
 $(DESTDIR)/wireguard-go-version.h: $(GOROOT)/.prepared go.mod
 	go list -m github.com/gaoxiaowei/wireguard-go | sed -n 's/.*v\([0-9.]*\).*/#define WIREGUARD_GO_VERSION "\1"/p' > "$@"
+	#go list -m golang.zx2c4.com/wireguard | sed -n 's/.*v\([0-9.]*\).*/#define WIREGUARD_GO_VERSION "\1"/p' > "$@"
 
 $(DESTDIR)/libwg-go.a: $(foreach ARCH,$(ARCHS),$(BUILDDIR)/libwg-go-$(ARCH).a)
 	@mkdir -vp "$(DESTDIR)"
